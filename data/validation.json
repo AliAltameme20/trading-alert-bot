@@ -1,0 +1,236 @@
+{
+ "generatedAt": "2026-09-25T21:33:29.298Z",
+ "dataThrough": "2026-09-25",
+ "feed": "iex",
+ "folds": [
+  {
+   "name": "year -2",
+   "from": "2024-09-25",
+   "to": "2025-09-25"
+  },
+  {
+   "name": "year -1",
+   "from": "2025-09-26",
+   "to": "2026-09-25"
+  }
+ ],
+ "universe": "267 most liquid US stocks today (survivorship-biased)",
+ "signals": 5197,
+ "config": {
+  "minPrice": 5,
+  "minDollarAdv": 20000000,
+  "maxOrderPctAdv": 0.01,
+  "regimeMa": 200,
+  "regimeSlopeBars": 21,
+  "regimeVolPctMax": 0.8,
+  "volWindow": 20,
+  "rsLookback": 126,
+  "betaWindow": 252,
+  "highR2": 0.7,
+  "atrPeriod": 14,
+  "vrQ": 10,
+  "vrZ": 2,
+  "vrMinBars": 500,
+  "overnightShareMax": 0.55,
+  "limitAtr": 0.25,
+  "minRiskPct": 0.005,
+  "maxRiskPct": 0.08,
+  "costPct": 0.0005,
+  "cellMinTrades": 150,
+  "cellMinAvgR": 0.05,
+  "cellMinPF": 1.15,
+  "validationMaxAgeDays": 45,
+  "earningsBlockSessions": 5,
+  "earningsUnknownBlocks": true
+ },
+ "cells": {
+  "pullback": {
+   "random walk": {
+    "pass": false,
+    "fails": [
+     "fold 2: +0.00R < +0.05R",
+     "profit factor 1.09 < 1.15"
+    ],
+    "pooled": {
+     "n": 2443,
+     "avgR": 0.03925400756924105,
+     "winRate": 0.4600900532132624,
+     "pf": 1.0850642253532294,
+     "t": 1.5689739440702335
+    },
+    "folds": [
+     {
+      "n": 1043,
+      "avgR": 0.08727161843081252,
+      "winRate": 0.48322147651006714,
+      "pf": 1.1944984884897059,
+      "t": 2.1602102298760206
+     },
+     {
+      "n": 1400,
+      "avgR": 0.003480887477370168,
+      "winRate": 0.44285714285714284,
+      "pf": 1.0073908715142308,
+      "t": 0.11014093204404848
+     }
+    ]
+   },
+   "trending": {
+    "pass": false,
+    "fails": [
+     "fold 1: 0 trades < 150",
+     "fold 2: 2 trades < 150"
+    ],
+    "pooled": {
+     "n": 2,
+     "avgR": 0.6484970111448841,
+     "winRate": 0.5,
+     "pf": 3.1485394388027856,
+     "t": 0.5179026186196332
+    },
+    "folds": [
+     {
+      "n": 0,
+      "avgR": null,
+      "winRate": null,
+      "pf": null,
+      "t": null
+     },
+     {
+      "n": 2,
+      "avgR": 0.6484970111448841,
+      "winRate": 0.5,
+      "pf": 3.1485394388027856,
+      "t": 0.5179026186196332
+     }
+    ]
+   }
+  },
+  "breakout": {
+   "random walk": {
+    "pass": false,
+    "fails": [
+     "fold 1: -0.02R < +0.05R",
+     "fold 2: -0.05R < +0.05R",
+     "profit factor 0.94 < 1.15"
+    ],
+    "pooled": {
+     "n": 1440,
+     "avgR": -0.03614245458319351,
+     "winRate": 0.4215277777777778,
+     "pf": 0.9355594890947921,
+     "t": -1.0286246989750305
+    },
+    "folds": [
+     {
+      "n": 625,
+      "avgR": -0.024323225340697613,
+      "winRate": 0.4448,
+      "pf": 0.9548932344051636,
+      "t": -0.4575733257030882
+     },
+     {
+      "n": 815,
+      "avgR": -0.04520628068940206,
+      "winRate": 0.403680981595092,
+      "pf": 0.9217141974238917,
+      "t": -0.9649278058343119
+     }
+    ]
+   },
+   "trending": {
+    "pass": false,
+    "fails": [
+     "fold 1: 0 trades < 150",
+     "fold 2: 1 trades < 150"
+    ],
+    "pooled": {
+     "n": 1,
+     "avgR": 2.2204083333333435,
+     "winRate": 1,
+     "pf": null,
+     "t": null
+    },
+    "folds": [
+     {
+      "n": 0,
+      "avgR": null,
+      "winRate": null,
+      "pf": null,
+      "t": null
+     },
+     {
+      "n": 1,
+      "avgR": 2.2204083333333435,
+      "winRate": 1,
+      "pf": null,
+      "t": null
+     }
+    ]
+   }
+  },
+  "dip": {
+   "random walk": {
+    "pass": false,
+    "fails": [
+     "fold 1: -0.01R < +0.05R",
+     "fold 2: -0.01R < +0.05R",
+     "profit factor 0.95 < 1.15"
+    ],
+    "pooled": {
+     "n": 1293,
+     "avgR": -0.011980659859423105,
+     "winRate": 0.5986078886310905,
+     "pf": 0.9463752127959499,
+     "t": -0.7768237035631737
+    },
+    "folds": [
+     {
+      "n": 546,
+      "avgR": -0.014998728919932178,
+      "winRate": 0.6062271062271062,
+      "pf": 0.9358324396579674,
+      "t": -0.6010926022976637
+     },
+     {
+      "n": 747,
+      "avgR": -0.009774681670617305,
+      "winRate": 0.5930388219544847,
+      "pf": 0.95471925953198,
+      "t": -0.5010622226300889
+     }
+    ]
+   },
+   "mean-reverting": {
+    "pass": false,
+    "fails": [
+     "fold 1: 10 trades < 150",
+     "fold 2: 8 trades < 150"
+    ],
+    "pooled": {
+     "n": 18,
+     "avgR": 0.12338677864677372,
+     "winRate": 0.7777777777777778,
+     "pf": 2.9964430408755285,
+     "t": 1.9361953254696225
+    },
+    "folds": [
+     {
+      "n": 10,
+      "avgR": 0.21228757037108464,
+      "winRate": 0.8,
+      "pf": 6.6676098027555755,
+      "t": 2.6812509898437056
+     },
+     {
+      "n": 8,
+      "avgR": 0.01226078899138507,
+      "winRate": 0.75,
+      "pf": 1.1329268859729922,
+      "t": 0.12966799931365597
+     }
+    ]
+   }
+  }
+ }
+}
