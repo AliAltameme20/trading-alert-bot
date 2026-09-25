@@ -1,0 +1,64 @@
+name: Daily signals
+
+# Runs in GitHub's cloud — your Mac can be off. Signals come from the COMPLETED session, so
+# there is no precise-minute dependency: any attempt that lands between ~4:20pm ET and the
+# next open delivers once (data/deliveries.json prevents repeats). GitHub's free scheduler
+# drops many cron triggers, hence several attempts per night and a pre-market fallback.
+on:
+  schedule:
+    - cron: "25,55 20-23 * * 1-5"   # evening ET (the script ignores attempts before close+20min)
+    - cron: "25 0-3 * * 2-6"        # late evening ET
+    - cron: "5,35 10-13 * * 1-5"    # pre-market fallback (6–9am ET)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "preview (no send), test (labelled TEST message), or production"
+        default: preview
+        type: choice
+        options: [preview, test, production]
+
+concurrency:
+  group: daily-signals
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # commits data/ledger.json + data/deliveries.json back to the repo
+
+jobs:
+  signals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4   # version comes from package.json packageManager
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: node --test
+      - name: Run
+        env:
+          APCA_API_KEY_ID: ${{ secrets.APCA_API_KEY_ID }}
+          APCA_API_SECRET_KEY: ${{ secrets.APCA_API_SECRET_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          AI_GATEWAY_API_KEY: ${{ secrets.AI_GATEWAY_API_KEY }}
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+          ACCOUNT_EQUITY: ${{ vars.ACCOUNT_EQUITY }}
+          RISK_PCT: ${{ vars.RISK_PCT }}
+          MAX_NEW_SIGNALS: ${{ vars.MAX_NEW_SIGNALS }}
+          MAX_OPEN_SIGNALS: ${{ vars.MAX_OPEN_SIGNALS }}
+          GIT_PERSIST: "1"
+        run: |
+          git config user.name "signals-bot"
+          git config user.email "signals-bot@users.noreply.github.com"
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "$MODE" = "production" ]; then
+            node scripts/daily.js --send
+          elif [ "$MODE" = "test" ]; then
+            node scripts/daily.js --test --send
+          else
+            node scripts/daily.js
+          fi

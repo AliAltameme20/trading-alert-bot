@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-09-17T17:59:35.284Z",
+  "sent": false,
+  "results": [
+    {
+      "symbol": "AAPL",
+      "status": "no-trade",
+      "probabilities": {
+        "relevantNews": 0.8,
+        "chartSupport": 0.69,
+        "materialConflict": 0.48
+      }
+    },
+    {
+      "symbol": "MSFT",
+      "status": "no-trade",
+      "probabilities": {
+        "relevantNews": 0.76,
+        "chartSupport": 0.18,
+        "materialConflict": 0.6
+      }
+    },
+    {
+      "symbol": "NVDA",
+      "status": "no-trade",
+      "probabilities": {
+        "relevantNews": 0.7,
+        "chartSupport": 0.6,
+        "materialConflict": 0.54
+      }
+    },
+    {
+      "symbol": "AMZN",
+      "status": "no-trade",
+      "probabilities": {
+        "relevantNews": 0.77,
+        "chartSupport": 0.18,
+        "materialConflict": 0.63
+      }
+    },
+    {
+      "symbol": "META",
+      "status": "no-trade",
+      "probabilities": {
+        "relevantNews": 0.87,
+        "chartSupport": 0.17,
+        "materialConflict": 0.6
+      }
+    }
+  ]
+}

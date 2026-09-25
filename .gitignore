@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.local
+.vercel/
+reports/
+.env*
+!.env.example
+_tmp_*
+*.tmp.*

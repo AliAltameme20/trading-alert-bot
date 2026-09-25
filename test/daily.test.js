@@ -1,0 +1,81 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { runDaily, formatDaily } from '../lib/daily.js';
+import { emptyLedger, resolve, updateKillSwitch, liveStats } from '../lib/ledger.js';
+import { sessionClock, etInstant, cleanBars } from '../lib/market.js';
+import { barsFromReturns, randomWalk, ar1 } from './synthetic.js';
+
+// Synthetic exchange: 1,000 sessions of weekday bars ending on the "completed" session.
+function world({ n = 60, validated = true, earningsFor = null, aiVeto = false, verified = true, spyDrift = 0.0008 } = {}) {
+  const spy = barsFromReturns(randomWalk(1000, 999, { drift: spyDrift, vol: 0.007 }), { seed: 999, volume: 5e7 });
+  const dates = spy.map(b => b.t.slice(0, 10));
+  const mk = (ret, seed) => barsFromReturns(ret, { seed, volume: 3e6, vol: 0.02 }).map((b, i) => ({ ...b, t: spy[i].t }));
+  const bars = { SPY: spy };
+  for (let s = 1; s <= n; s++) bars['S' + s] = mk(ar1(1000, s, 0.12, { vol: 0.02, drift: 0.0006 }), s);
+  const last = dates.at(-1), next = new Date(Date.parse(last) + 86400000).toISOString().slice(0, 10);
+  const sessions = [...dates, next, '2099-01-01'].map(d => ({ date: d, open: etInstant(d, '09:30'), close: etInstant(d, '16:00') }));
+  const now = new Date(etInstant(last, '20:00'));
+  const cell = { pass: true, fails: [], pooled: { n: 900, avgR: 0.2, pf: 1.5, t: 4, winRate: 0.5 } };
+  const validation = validated ? { generatedAt: now.toISOString(), cells: Object.fromEntries(['pullback', 'breakout', 'dip'].map(k => [k, { 'random walk': cell, trending: cell, 'mean-reverting': cell }])) } : null;
+  const calls = { ai: 0 };
+  const services = {
+    calendar: async () => sessions, sessionClock,
+    universe: async () => ({ assets: Object.keys(bars).filter(s => s !== 'SPY').map(symbol => ({ symbol, name: symbol + ' Corp' })) }),
+    dailyBars: async (syms, start, end) => ({ feed: 'sip', bars: Object.fromEntries(syms.filter(s => bars[s]).map(s => [s, cleanBars(bars[s].filter(b => b.t.slice(0, 10) >= new Date(start).toISOString().slice(0, 10)), end)])) }),
+    earningsWindow: async () => ({ verified, sources: ['test'], bySymbol: new Map(earningsFor ? earningsFor.map(s => [s, next]) : []) }),
+    recentNews: async () => [{ headline: 'Synthetic headline', url: 'https://example.com' }],
+    aiVeto: async () => { calls.ai++; return { ran: true, veto: aiVeto, why: aiVeto ? 'AI flagged (test)' : 'no disqualifier (test)' }; },
+  };
+  return { services, now, validation, calls, bars, next, last };
+}
+
+test('validated cells produce at most MAX_NEW live signals with levels, size and edge evidence', async () => {
+  const w = world(), ledger = emptyLedger();
+  const out = await runDaily({ now: w.now, services: w.services, ledger, validation: w.validation, settings: { maxNew: 1 } });
+  assert.equal(out.status, 'signal'); assert.equal(out.signals.length, 1);
+  const msg = formatDaily(out);
+  assert.match(msg, /BUY LIMIT S\d+ @ \$/); assert.match(msg, /Stop \$/); assert.match(msg, /out-of-sample trades/); assert.match(msg, /Funnel:/);
+  assert.equal(ledger.signals.filter(s => s.kind === 'live').length, 1);
+});
+test('no validation file → zero trades, only shadow logging', async () => {
+  const w = world({ validated: false }), ledger = emptyLedger();
+  const out = await runDaily({ now: w.now, services: w.services, ledger, validation: null });
+  assert.equal(out.signals.length, 0); assert.match(formatDaily(out), /NO TRADE — No setup has validated/);
+  assert.ok(ledger.signals.every(s => s.kind === 'shadow'));
+});
+test('earnings inside 5 sessions and unverifiable earnings both block (fail-closed)', async () => {
+  const w1 = world(); const o1 = await runDaily({ now: w1.now, services: { ...w1.services, earningsWindow: async () => ({ verified: true, sources: [], bySymbol: new Map(Object.keys(w1.bars).map(s => [s, w1.next])) }) }, ledger: emptyLedger(), validation: w1.validation });
+  assert.equal(o1.signals.length, 0); assert.ok(o1.vetoed.every(v => /earnings/.test(v.why)));
+  const w2 = world({ verified: false }); const o2 = await runDaily({ now: w2.now, services: w2.services, ledger: emptyLedger(), validation: w2.validation });
+  assert.equal(o2.signals.length, 0); assert.ok(o2.vetoed.some(v => /unverifiable/.test(v.why)));
+});
+test('the AI can only withhold, never add', async () => {
+  const w = world({ aiVeto: true }); const out = await runDaily({ now: w.now, services: w.services, ledger: emptyLedger(), validation: w.validation });
+  assert.equal(out.signals.length, 0); assert.ok(out.vetoed.some(v => /AI flagged/.test(v.why)));
+});
+test('risk-off tape blocks every long before any stock is read', async () => {
+  const w = world({ spyDrift: -0.002 }); const out = await runDaily({ now: w.now, services: w.services, ledger: emptyLedger(), validation: w.validation });
+  assert.equal(out.status, 'regime-block'); assert.match(formatDaily(out), /regime does not support/);
+});
+test('after the next open, the run refuses to send a stale signal', async () => {
+  const w = world(); const late = new Date(etInstant(w.next, '10:00'));
+  const out = await runDaily({ now: late, services: w.services, ledger: emptyLedger(), validation: w.validation });
+  assert.equal(out.status, 'missed');
+});
+test('ledger scores outcomes with the backtest engine; kill switch pauses and resumes', () => {
+  const L = emptyLedger();
+  const mk = (i, r) => ({ id: 'x' + i, symbol: 'X', kind: 'live', status: 'closed', result: { r, exitDate: `2026-01-${String(i).padStart(2, '0')}` } });
+  L.signals = Array.from({ length: 16 }, (_, i) => mk(i + 1, -0.5));
+  assert.equal(updateKillSwitch(L), 'paused'); assert.equal(L.pause.paused, true);
+  L.signals.push(...Array.from({ length: 20 }, (_, i) => ({ ...mk(i + 17, 1), kind: 'paused' })));
+  assert.equal(updateKillSwitch(L), 'resumed');
+  const L2 = emptyLedger();
+  L2.signals.push({ id: 'a', symbol: 'A', kind: 'live', asOf: '2026-01-02', status: 'pending', plan: { limit: 100, stop: 95, target: 110, maxSessions: 5 } });
+  resolve(L2, { A: [{ t: '2026-01-05T05:00:00Z', o: 99, h: 111, l: 98, c: 110, v: 1 }] });
+  assert.equal(L2.signals[0].status, 'closed'); assert.equal(L2.signals[0].result.reason, 'target');
+  assert.equal(liveStats(L2).n, 1);
+});
+test('DST-safe session clock', () => {
+  assert.equal(etInstant('2026-07-01', '16:00').toISOString(), '2026-07-01T20:00:00.000Z');
+  assert.equal(etInstant('2026-12-01', '16:00').toISOString(), '2026-12-01T21:00:00.000Z');
+});
