@@ -79,3 +79,9 @@ test('DST-safe session clock', () => {
   assert.equal(etInstant('2026-07-01', '16:00').toISOString(), '2026-07-01T20:00:00.000Z');
   assert.equal(etInstant('2026-12-01', '16:00').toISOString(), '2026-12-01T21:00:00.000Z');
 });
+test('SIP queries end with an exact timestamp at least 16 minutes old', async () => {
+  const { endStamp } = await import('../lib/market.js');
+  const now = Date.parse('2026-09-25T21:30:00Z');
+  assert.equal(endStamp('2026-09-25', now), '2026-09-25T21:14:00.000Z');
+  assert.equal(endStamp('2026-09-24', now), '2026-09-24T23:59:59.000Z');
+});
