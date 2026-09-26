@@ -8,7 +8,7 @@ Runs on **GitHub Actions**, so your Mac can be off. After each US session closes
 |---|------|-------------|
 | 00 | Liquidity | Price < $5 or median consolidated dollar volume < $20M (orders are capped at 1% of it) |
 | 01 | Market regime | SPY is not in a rising uptrend with normal volatility. Risk-off or transitional means no new longs. Unstable volatility halves the size |
-| — | Setup | None of the 3 pre-registered setups fires today: trend pullback (your original rule), 20-day breakout, or RSI(2) dip in an uptrend |
+| — | Setup | None of the 6 pre-registered setups fires today: trend pullback (your original rule), 20-day breakout, RSI(2) dip, volume gap that holds, fresh 52-week high, momentum-leader pullback (last three added Sept 25, 2026, before their first test) |
 | 04 | Series character | The stock's variance ratio (Lo–MacKinlay z*, 3 years) contradicts the setup, e.g. a trend setup on a statistically mean-reverting stock |
 | ✔ | **Validated edge** | That setup × character cell did not earn at least +0.05R per trade after costs in **each** of the last two years, out-of-sample, with 150+ trades per year and a pooled PF of at least 1.15, across ~1,200 liquid stocks (`scripts/validate.js`, monthly). With no validation, or one older than 45 days, **nothing is sent as a trade** |
 | 09 | Earnings | A report falls within 5 sessions, **or the date can't be verified** (fail-closed; Finnhub + Nasdaq calendars) |

@@ -2,15 +2,18 @@
 // Question: does the universe-level validation (the same judgeCell used live) switch a cell ON
 // for pure noise? It must not. And does it switch ON when real structure exists?
 // Usage: node scripts/calibrate.js [stocks per universe] [universes]
-import { CONFIG, SETUPS, prepare, simulateTrade, seriesCharacter, characterFits, judgeCell, tradeStats } from '../lib/protocol.js';
+import { CONFIG, SETUPS, prepare, attachMomentumRanks, simulateTrade, seriesCharacter, characterFits, judgeCell, tradeStats } from '../lib/protocol.js';
 import { barsFromReturns, randomWalk, ar1 } from '../test/synthetic.js';
 
 const N = +process.argv[2] || 120, U = +process.argv[3] || 5;
 function universe(gen, seed0) {
   // two OOS folds of 250 sessions each after 760 sessions of history
   const cells = {};
+  const all = {};
+  for (let s = 0; s < N; s++) { const seed = seed0 + s; all[seed] = prepare(barsFromReturns(gen(1260, seed), { seed, vol: 0.02, volume: 3e6 })); }
+  attachMomentumRanks(all);
   for (let s = 0; s < N; s++) {
-    const seed = seed0 + s, bars = barsFromReturns(gen(1260, seed), { seed, vol: 0.02, volume: 3e6 }), sp = prepare(bars);
+    const seed = seed0 + s, sp = all[seed], bars = sp.bars;
     for (const [key, st] of Object.entries(SETUPS)) {
       for (let i = 760, busy = -1; i < 1255; i++) {
         if (i <= busy) continue;

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { CONFIG, varianceRatio, seriesCharacter, simulateTrade, backtest, judgeCell, cellStatus, atrSeries, rsiSeries, marketRegime, readSymbol, tradeStats } from '../lib/protocol.js';
+import { SETUPS, prepare, attachMomentumRanks, CONFIG, varianceRatio, seriesCharacter, simulateTrade, backtest, judgeCell, cellStatus, atrSeries, rsiSeries, marketRegime, readSymbol, tradeStats } from '../lib/protocol.js';
 import { dailyIndicators } from '../lib/morning-strategy.js';
 import { barsFromReturns, randomWalk, ar1 } from './synthetic.js';
 
@@ -86,4 +86,22 @@ test('without a validation file nothing is ever a live candidate', () => {
     live += r.candidates.length;
   }
   assert.equal(live, 0);
+});
+
+test('new setups fire only on their pre-registered conditions', () => {
+  const base = barsFromReturns(randomWalk(300, 77, { drift: 0.002, vol: 0.01 }), { seed: 77, volume: 3e6 });
+  const last = base.at(-1), gap = { ...last, t: '2099-01-01T05:00:00Z', o: last.c * 1.05, l: last.c * 1.04, h: last.c * 1.09, c: last.c * 1.08, v: 2e7 };
+  const s1 = prepare([...base, gap]);
+  const g = SETUPS.gapdrift.at(s1, s1.bars.length - 1);
+  assert.ok(g, 'gap on 6x volume that closes strong fires'); assert.equal(g.maxSessions, 20); assert.equal(g.target, null);
+  const weak = prepare([...base, { ...gap, c: gap.l * 1.001 }]);
+  assert.equal(SETUPS.gapdrift.at(weak, weak.bars.length - 1), null, 'gap that fades does not');
+  const s2 = prepare(base);
+  assert.equal(SETUPS.leaderdip.at(s2, s2.bars.length - 1), null, 'no cross-sectional rank → never fires');
+});
+test('momentum ranks are cross-sectional percentiles per date', () => {
+  const u = {}; for (let k = 0; k < 60; k++) u['S' + k] = prepare(barsFromReturns(randomWalk(300, 500 + k, { drift: (k - 30) * 0.0001 }), { seed: 500 + k }));
+  attachMomentumRanks(u);
+  const last = Object.values(u).map(s => s.momPct.at(-1));
+  assert.equal(Math.min(...last), 0); assert.equal(Math.max(...last), 1);
 });
