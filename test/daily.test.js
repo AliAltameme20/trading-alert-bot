@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { runDaily, formatDaily, exitRule } from '../lib/daily.js';
+import { runDaily, formatDaily, exitLines } from '../lib/daily.js';
 import { CONFIG } from '../lib/protocol.js';
 import { emptyLedger, resolve, updateKillSwitch, liveStats } from '../lib/ledger.js';
 import { sessionClock, etInstant, cleanBars, earningsWindow } from '../lib/market.js';
@@ -35,7 +35,10 @@ test('validated cells produce at most MAX_NEW live signals with levels, size and
   const out = await runDaily({ now: w.now, services: w.services, ledger, validation: w.validation, settings: { maxNew: 1 } });
   assert.equal(out.status, 'signal'); assert.equal(out.signals.length, 1);
   const msg = formatDaily(out);
-  assert.match(msg, /BUY LIMIT S\d+ @ \$/); assert.match(msg, /Stop \$/); assert.match(msg, /out-of-sample trades/); assert.match(msg, /Funnel:/);
+  assert.match(msg, /🟢 BUY S\d+ · S\d+ Corp/); assert.match(msg, /Buy limit: \$[\d,.]+\. Day order/);
+  assert.match(msg, /Stop loss: \$[\d,.]+ \(−\d+\.\d%\)/); assert.match(msg, /Buy \d+ shares? ≈ \$/); assert.match(msg, /If stopped: −\$[\d,.]+ \(\d+\.\d% of account\)/);
+  assert.match(msg, /📊 THE STOCK\nLast close: \$/); assert.match(msg, /🔎 WHY THIS ONE\n\S/); assert.match(msg, /past trades like this/); assert.match(msg, /Funnel:/);
+  assert.doesNotMatch(msg, /NaN|undefined|Invalid Date/);
   assert.equal(ledger.signals.filter(s => s.kind === 'live').length, 1);
 });
 test('no validation file → zero trades, only shadow logging', async () => {
@@ -87,11 +90,14 @@ test('SIP queries end with an exact timestamp at least 16 minutes old', async ()
   assert.equal(endStamp('2026-09-24', now), '2026-09-24T23:59:59.000Z');
 });
 
-test('the message states the exit each setup was validated with', () => {
-  assert.match(exitRule({ exitAboveSma: 5, maxSessions: 5 }), /closes above its 5-day avg/);
-  assert.match(exitRule({ target: 110, maxSessions: 10 }), /Target \$110\.00/);
-  const timeOnly = exitRule({ target: null, maxSessions: 20 });   // gapdrift, high52, leaderdip
-  assert.match(timeOnly, /close of session 20/); assert.doesNotMatch(timeOnly, /avg/);
+test('the message states the exit each setup was validated with, with real prices and dates', () => {
+  const future = ['2026-09-28', '2026-09-29', '2026-09-30', '2026-10-01', '2026-10-02'];
+  const dip = exitLines({ limit: 100, stop: 90, exitAboveSma: 5, maxSessions: 5, prevCloses: [104, 103, 101, 99] }, future).join('\n');
+  assert.match(dip, /closes above its 5-day average/); assert.match(dip, /day 1 that means a close above \$101\.75/); assert.match(dip, /Fri, Oct 2 \(day 5\)/);
+  const t = exitLines({ limit: 100, stop: 95, target: 110, riskPerShare: 5, maxSessions: 5 }, future).join('\n');
+  assert.match(t, /Target: \$110\.00 \(\+10\.0%\)/); assert.match(t, /OCO/); assert.match(t, /Reward : risk = 2\.0 : 1/);
+  const timeOnly = exitLines({ limit: 100, stop: 95, target: null, maxSessions: 20 }, future).join('\n');   // gapdrift, high52, leaderdip
+  assert.match(timeOnly, /Target: none/); assert.match(timeOnly, /day 20 of the trade/); assert.doesNotMatch(timeOnly, /average/);
 });
 test('probation cells send a labelled signal at reduced risk, and full cells outrank them', async () => {
   const probation = { pass: false, fails: ['fold 2: +0.02R < +0.05R'], pooled: { n: 900, avgR: 0.04, pf: 1.1, t: 4, winRate: 0.5 }, folds: [{ n: 450, avgR: 0.06 }, { n: 450, avgR: 0.02 }] };
@@ -101,7 +107,7 @@ test('probation cells send a labelled signal at reduced risk, and full cells out
   const s = out.signals[0];
   assert.equal(s.best.tier, 'probation'); assert.equal(s.rec.tier, 'probation');
   assert.equal(s.read.sizing.riskDollars, 10000 * 0.01 * out.regime.riskScale * CONFIG.probationRiskScale);
-  assert.match(formatDaily(out), /\[PROBATION · reduced size\] BUY LIMIT/);
+  assert.match(formatDaily(out), /🟢 BUY S\d+.*\n🟡 Probation: half size/);
   assert.ok(out.enabledCells.every(c => c.endsWith('(probation)')));
   const weak = { ...probation, pooled: { ...probation.pooled, t: 2 } };
   const w2 = world({ cell: weak }), o2 = await runDaily({ now: w2.now, services: w2.services, ledger: emptyLedger(), validation: w2.validation });
@@ -138,4 +144,14 @@ test('a split during the hold rescales the plan instead of scoring garbage', () 
   const s = L.signals[0];
   assert.equal(s.status, 'closed'); assert.equal(s.result.reason, 'target'); assert.equal(s.result.splitFactor, 0.5);
   assert.ok(Math.abs(s.result.r - (55 - 49.8 - CONFIG.costPct * (49.8 + 55)) / (49.8 - 47.5)) < 1e-9);
+});
+test('sizing never risks more than 1% per trade or puts more than 25% of the account in one stock', async () => {
+  const w = world(), out = await runDaily({ now: w.now, services: w.services, ledger: emptyLedger(), validation: w.validation, settings: { equity: 100000, riskPct: 0.15, maxNew: 3 } });
+  assert.ok(out.signals.length > 0);
+  for (const { read, best } of out.signals) {
+    assert.ok(read.sizing.riskPct <= CONFIG.maxTradeRisk + 1e-12, `risk ${read.sizing.riskPct}`);
+    assert.ok(read.sizing.shares * best.plan.riskPerShare <= 100000 * CONFIG.maxTradeRisk + 1e-6);
+    assert.ok(read.sizing.notional <= 100000 * CONFIG.maxPositionPct + 1e-6, `notional ${read.sizing.notional}`);
+  }
+  assert.match(formatDaily(out), /risk capped at the 1% per-trade ceiling/);
 });
