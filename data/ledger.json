@@ -1,5 +1,71 @@
 {
  "version": 1,
- "signals": [],
- "pause": { "paused": false }
+ "signals": [
+  {
+   "id": "2026-09-25:TSLA:pullback",
+   "symbol": "TSLA",
+   "setup": "pullback",
+   "label": "Trend pullback (1–5 sessions)",
+   "character": "random walk",
+   "asOf": "2026-09-25",
+   "createdAt": "2026-09-26T00:00:30.917Z",
+   "kind": "shadow",
+   "plan": {
+    "limit": 375.29,
+    "stop": 356.19,
+    "target": 413.49,
+    "maxSessions": 5,
+    "riskPerShare": 19.1,
+    "close": 372.11,
+    "atr": 12.732225182405047
+   },
+   "sizing": null,
+   "status": "pending"
+  },
+  {
+   "id": "2026-09-25:JNJ:pullback",
+   "symbol": "JNJ",
+   "setup": "pullback",
+   "label": "Trend pullback (1–5 sessions)",
+   "character": "random walk",
+   "asOf": "2026-09-25",
+   "createdAt": "2026-09-26T00:00:30.917Z",
+   "kind": "shadow",
+   "plan": {
+    "limit": 272.51,
+    "stop": 264.52,
+    "target": 288.49,
+    "maxSessions": 5,
+    "riskPerShare": 7.99,
+    "close": 271.22,
+    "atr": 5.160842666239793
+   },
+   "sizing": null,
+   "status": "pending"
+  },
+  {
+   "id": "2026-09-25:TXN:breakout",
+   "symbol": "TXN",
+   "setup": "breakout",
+   "label": "20-day breakout (≤10 sessions)",
+   "character": "random walk",
+   "asOf": "2026-09-25",
+   "createdAt": "2026-09-26T00:00:30.917Z",
+   "kind": "shadow",
+   "plan": {
+    "limit": 280.15,
+    "stop": 263.49,
+    "target": 330.13,
+    "maxSessions": 10,
+    "riskPerShare": 16.66,
+    "close": 278.07,
+    "atr": 8.32758759271448
+   },
+   "sizing": null,
+   "status": "pending"
+  }
+ ],
+ "pause": {
+  "paused": false
+ }
 }
