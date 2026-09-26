@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { SETUPS, prepare, attachMomentumRanks, CONFIG, varianceRatio, seriesCharacter, simulateTrade, backtest, judgeCell, cellStatus, atrSeries, rsiSeries, marketRegime, readSymbol, tradeStats } from '../lib/protocol.js';
+import { SETUPS, prepare, attachMomentumRanks, CONFIG, varianceRatio, seriesCharacter, simulateTrade, backtest, judgeCell, cellStatus, cellTier, momentumUniverse, atrSeries, rsiSeries, marketRegime, readSymbol, tradeStats } from '../lib/protocol.js';
 import { dailyIndicators } from '../lib/morning-strategy.js';
 import { barsFromReturns, randomWalk, ar1 } from './synthetic.js';
 
@@ -104,4 +104,22 @@ test('momentum ranks are cross-sectional percentiles per date', () => {
   attachMomentumRanks(u);
   const last = Object.values(u).map(s => s.momPct.at(-1));
   assert.equal(Math.min(...last), 0); assert.equal(Math.max(...last), 1);
+});
+test('probation tier needs every year positive, PF ≥ 1.05 and pooled t ≥ 3', () => {
+  const cell = (folds, pf, t) => ({ pass: false, fails: ['x'], pooled: { pf, t }, folds });
+  const pullbackRW = cell([{ n: 7537, avgR: 0.062 }, { n: 7137, avgR: 0.022 }], 1.097, 4.29);   // measured Sept 25, 2026
+  assert.equal(cellTier(pullbackRW), 'probation');
+  assert.equal(cellTier(cell([{ n: 4050, avgR: 0.017 }, { n: 3353, avgR: 0.012 }], 1.073, 2.30)), null, 'dip/random walk: t < 3');
+  assert.equal(cellTier(cell([{ n: 900, avgR: 0.1 }, { n: 900, avgR: -0.001 }], 1.3, 5)), null, 'a losing year blocks');
+  assert.equal(cellTier(cell([{ n: 100, avgR: 0.1 }, { n: 900, avgR: 0.1 }], 1.3, 5)), null, 'too few trades blocks');
+  assert.equal(cellTier({ pass: true }), 'full');
+  assert.equal(cellTier(pullbackRW, { ...CONFIG, probationRiskScale: 0 }), null, 'can be switched off');
+  const v = { generatedAt: '2026-09-25T00:00:00Z', cells: { pullback: { 'random walk': pullbackRW } } };
+  const st = cellStatus(v, 'pullback', 'random walk', new Date('2026-09-26'));
+  assert.equal(st.enabled, true); assert.equal(st.tier, 'probation');
+});
+test('momentum is ranked inside the same universe rule live and in validation', () => {
+  const u = {}; for (let k = 0; k < 8; k++) u['S' + k] = { bars: new Array(k < 6 ? 800 : 300), dv: new Array(20).fill(1e6 * (k + 1)) };
+  // top 4 by dollar volume: S7, S6 (too little history → dropped), S5, S4
+  assert.deepEqual(Object.keys(momentumUniverse(u, { ...CONFIG, momUniverseSize: 4, momMinBars: 760 })).sort(), ['S4', 'S5']);
 });

@@ -31,6 +31,16 @@ const validation = await readJson('data/validation.json', null);
 const sessions = await market.calendar(market.addDays(now, -10), market.addDays(now, 10));
 const clock = market.sessionClock(sessions, now);
 const key = clock.target?.date;
+// A send that failed after state was committed: resend the saved message while it's still valid.
+if (production && deliveries[key]?.status === 'send-failed' && deliveries[key].message) {
+  if (!clock.entryWindowOpen) {
+    deliveries[key] = { ...deliveries[key], status: 'missed', missedAt: now.toISOString() };
+    await writeJson('data/deliveries.json', deliveries); commit(`missed ${key} (send never succeeded)`);
+    process.exit(0);
+  }
+  await deliver(deliveries[key].message);
+  process.exit(0);
+}
 if (production && ['sent', 'pending', 'missed'].includes(deliveries[key]?.status)) {
   console.log(`Session ${key} already ${deliveries[key].status} — nothing to do.`);
   process.exit(deliveries[key].status === 'pending' ? 2 : 0);
@@ -59,14 +69,29 @@ if (!send) process.exit(0);
 
 if (production) {
   await writeJson('data/ledger.json', ledger);
-  deliveries[key] = { status: 'pending', at: now.toISOString(), signals: out.signals.map(s => s.rec.id) };
+  deliveries[key] = { status: 'pending', at: now.toISOString(), signals: out.signals.map(s => s.rec.id), message };
   await writeJson('data/deliveries.json', deliveries);
   commit(`signals ${key}: ${out.status}`);   // durable BEFORE sending: a crash can't double-send
 }
-const ids = await market.sendTelegram(message);
-if (production) {
-  deliveries[key] = { ...deliveries[key], status: 'sent', sentAt: new Date().toISOString(), messageIds: ids };
-  await writeJson('data/deliveries.json', deliveries);
-  commit(`delivered ${key}`);
+await deliver(message);
+
+// Telegram refused or unreachable → record it so the next scheduled attempt resends the same
+// message (the ledger already holds these signals, so re-running the scan would drop them).
+async function deliver(text) {
+  let ids;
+  try { ids = await market.sendTelegram(text); }
+  catch (e) {
+    console.error('Telegram failed:', safeError(e));
+    if (production) {
+      deliveries[key] = { ...deliveries[key], status: 'send-failed', sendAttempts: (deliveries[key].sendAttempts || 0) + 1, lastError: safeError(e) };
+      await writeJson('data/deliveries.json', deliveries); commit(`send failed ${key}`);
+    }
+    process.exit(1);
+  }
+  if (production) {
+    deliveries[key] = { ...deliveries[key], status: 'sent', sentAt: new Date().toISOString(), messageIds: ids };
+    await writeJson('data/deliveries.json', deliveries);
+    commit(`delivered ${key}`);
+  }
+  console.log(JSON.stringify({ telegram: 'accepted', ids, test }));
 }
-console.log(JSON.stringify({ telegram: 'accepted', ids, test }));

@@ -10,8 +10,8 @@ Runs on **GitHub Actions**, so your Mac can be off. After each US session closes
 | 01 | Market regime | SPY is not in a rising uptrend with normal volatility. Risk-off or transitional means no new longs. Unstable volatility halves the size |
 | — | Setup | None of the 6 pre-registered setups fires today: trend pullback (your original rule), 20-day breakout, RSI(2) dip, volume gap that holds, fresh 52-week high, momentum-leader pullback (last three added Sept 25, 2026, before their first test) |
 | 04 | Series character | The stock's variance ratio (Lo–MacKinlay z*, 3 years) contradicts the setup, e.g. a trend setup on a statistically mean-reverting stock |
-| ✔ | **Validated edge** | That setup × character cell did not earn at least +0.05R per trade after costs in **each** of the last two years, out-of-sample, with 150+ trades per year and a pooled PF of at least 1.15, across ~1,200 liquid stocks (`scripts/validate.js`, monthly). With no validation, or one older than 45 days, **nothing is sent as a trade** |
-| 09 | Earnings | A report falls within 5 sessions, **or the date can't be verified** (fail-closed; Finnhub + Nasdaq calendars) |
+| ✔ | **Validated edge** | That setup × character cell did not earn at least +0.05R per trade after costs in **each** of the last two years, out-of-sample, with 150+ trades per year and a pooled PF of at least 1.15, across ~1,200 liquid stocks (`scripts/validate.js`, monthly). With no validation, or one older than 45 days, **nothing is sent as a trade**. **Probation:** a cell that misses that bar but is positive after costs in both years, with PF ≥ 1.05 and pooled t ≥ 3, is sent at **half size** and labelled `[PROBATION]` (`probationRiskScale: 0` in `CONFIG` turns this off) |
+| 09 | Earnings | A report falls within 5 sessions or after the signal day's close, **or the date or timing can't be verified** (fail-closed; Finnhub + Nasdaq calendars) |
 | AI | Veto only | Jev finds a disqualifying fact in the last 72h of news (a deal, an offering, an investigation…). The AI can withhold a signal. It can't create one or change a level. If it errors, the signal is withheld |
 | ⛔ | Live kill switch | Your last 20 closed signals average below 0R (checked once 15 have closed). The bot then pauses itself and labels new signals "do not trade" until forward results recover above +0.05R |
 
@@ -21,7 +21,7 @@ Every signal (live, paused or shadow) is written to `data/ledger.json`, and its 
 
 ## Files
 
-- `lib/protocol.js`: all gates, the three setups, the trade simulator, and every threshold (`CONFIG`, assumptions marked `[A]`)
+- `lib/protocol.js`: all gates, the six setups, the trade simulator, and every threshold (`CONFIG`, assumptions marked `[A]`)
 - `lib/validate.js`, `scripts/validate.js`: universe walk-forward validation, stored in `data/validation.json`
 - `lib/daily.js`, `scripts/daily.js`: the daily run
 - `lib/ledger.js`: signal record + kill switch
@@ -34,7 +34,7 @@ Every signal (live, paused or shadow) is written to `data/ledger.json`, and its 
 
 ```sh
 pnpm install --frozen-lockfile
-pnpm test                 # 34 offline tests
+pnpm test                 # 45 offline tests
 pnpm calibrate            # synthetic-market calibration
 pnpm signals:preview      # needs .env.local and a network that reaches Alpaca
 ```

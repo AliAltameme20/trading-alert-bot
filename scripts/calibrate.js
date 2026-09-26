@@ -42,12 +42,12 @@ const scenarios = [
   ['reversion AR(−0.15)', (T, s) => ar1(T, s, -0.15, { vol: 0.02, drift: 0.0004 })],
 ];
 for (const [name, gen] of scenarios) {
-  const enabled = {};
+  const enabled = {}, probation = {};
   let pooled = {};
   for (let u = 0; u < U; u++) {
     const res = universe(gen, 1 + u * 100000);
-    for (const [cell, j] of Object.entries(res)) { if (j.pass) enabled[cell] = (enabled[cell] || 0) + 1; (pooled[cell] ??= []).push(j.pooled.avgR); }
+    for (const [cell, j] of Object.entries(res)) { if (j.pass) enabled[cell] = (enabled[cell] || 0) + 1; if (j.tier === 'probation') probation[cell] = (probation[cell] || 0) + 1; (pooled[cell] ??= []).push(j.pooled.avgR); }
   }
   console.log(`\n${name}: cells switched ON across ${U} universes of ${N} stocks`);
-  for (const cell of Object.keys(pooled).sort()) console.log(`  ${cell.padEnd(28)} on ${enabled[cell] || 0}/${U}   mean OOS avgR ${(pooled[cell].reduce((a, b) => a + b, 0) / pooled[cell].length).toFixed(3)}`);
+  for (const cell of Object.keys(pooled).sort()) console.log(`  ${cell.padEnd(28)} on ${enabled[cell] || 0}/${U}  probation ${probation[cell] || 0}/${U}   mean OOS avgR ${(pooled[cell].reduce((a, b) => a + b, 0) / pooled[cell].length).toFixed(3)}`);
 }

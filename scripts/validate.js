@@ -4,12 +4,12 @@
 import { fileURLToPath } from 'node:url';
 import * as market from '../lib/market.js';
 import { validateUniverse } from '../lib/validate.js';
-import { CONFIG, SETUPS, fmtR, median, configForFeed } from '../lib/protocol.js';
+import { CONFIG, SETUPS, fmtR, median, configForFeed, cellTier } from '../lib/protocol.js';
 import { writeJson, commit } from '../lib/persist.js';
 
 process.chdir(fileURLToPath(new URL('../', import.meta.url)));
 const send = process.argv.includes('--send'), now = new Date();
-const N = Number(process.env.VALIDATE_SYMBOLS || 1200);
+const N = Number(process.env.VALIDATE_SYMBOLS || CONFIG.momUniverseSize);
 const sessions = await market.calendar(market.addDays(now, -20), now);
 const through = market.sessionClock(sessions, now).target.date;
 const iso = d => market.isoDay(d), back = m => { const d = new Date(through + 'T00:00:00Z'); d.setUTCMonth(d.getUTCMonth() - m); return iso(d); };
@@ -28,10 +28,10 @@ const { cells, counts } = validateUniverse(bars, spy, folds, configForFeed(feed)
 const validation = { generatedAt: now.toISOString(), dataThrough: through, feed, feedWarning: feed === 'iex' ? 'Alpaca refused consolidated data; IEX-only bars used' : undefined, folds, universe: `${counts.symbols} most liquid US stocks today (survivorship-biased)`, signals: counts.signals, config: CONFIG, cells };
 await writeJson('data/validation.json', validation);
 
-const lines = [`🧪 MONTHLY VALIDATION · data through ${through} · ${feed === 'sip' ? 'consolidated data' : '⚠️ IEX-only data'} · ${counts.symbols} stocks · ${counts.signals.toLocaleString()} out-of-sample trades`, `Test years: ${folds.map(f => `${f.from}→${f.to}`).join(' and ')}. Costs included. A cell goes live only if BOTH years clear ${fmtR(CONFIG.cellMinAvgR)} with ≥${CONFIG.cellMinTrades} trades and PF ≥ ${CONFIG.cellMinPF}.`];
+const lines = [`🧪 MONTHLY VALIDATION · data through ${through} · ${feed === 'sip' ? 'consolidated data' : '⚠️ IEX-only data'} · ${counts.symbols} stocks · ${counts.signals.toLocaleString()} out-of-sample trades`, `Test years: ${folds.map(f => `${f.from}→${f.to}`).join(' and ')}. Costs included. A cell goes live only if BOTH years clear ${fmtR(CONFIG.cellMinAvgR)} with ≥${CONFIG.cellMinTrades} trades and PF ≥ ${CONFIG.cellMinPF}. Probation (${Math.round(CONFIG.probationRiskScale * 100)}% size): both years positive, PF ≥ ${CONFIG.probationMinPF}, pooled t ≥ ${CONFIG.probationMinT}.`];
 for (const [k, labels] of Object.entries(cells)) for (const [l, c] of Object.entries(labels))
-  lines.push(`${c.pass ? '✅ LIVE' : '⛔ off'} ${SETUPS[k].label} · ${l}: ${c.folds.map(f => `${fmtR(f.avgR)} (n ${f.n})`).join(' | ')} · PF ${Number.isFinite(c.pooled.pf) ? c.pooled.pf.toFixed(2) : 'n/a'}`);
-if (!Object.values(cells).some(l => Object.values(l).some(c => c.pass))) lines.push('Result: no setup has out-of-sample edge right now. The bot will send NO trades and keep logging shadow signals until one does.');
+  lines.push(`${c.pass ? '✅ LIVE' : cellTier(c) === 'probation' ? '🟡 PROBATION' : '⛔ off'} ${SETUPS[k].label} · ${l}: ${c.folds.map(f => `${fmtR(f.avgR)} (n ${f.n})`).join(' | ')} · PF ${Number.isFinite(c.pooled.pf) ? c.pooled.pf.toFixed(2) : 'n/a'}`);
+if (!Object.values(cells).some(l => Object.values(l).some(c => cellTier(c)))) lines.push('Result: no setup has out-of-sample edge right now. The bot will send NO trades and keep logging shadow signals until one does.');
 lines.push('Caveats: survivorship-biased universe; historical earnings not excluded (live bot blocks them); regime and series character measured point-in-time.');
 const message = lines.join('\n\n');
 console.log(message);

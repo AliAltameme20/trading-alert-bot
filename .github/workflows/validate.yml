@@ -4,7 +4,8 @@ name: Monthly validation
 # pass can produce live signals; results older than 45 days switch every signal off.
 on:
   schedule:
-    - cron: "17 14 1-7 * 6"   # first Saturday of the month
+    - cron: "17 14 * * 6"     # every Saturday; the gate job below skips all but the first
+                              # (cron ORs day-of-month with day-of-week, so "1-7 * 6" ran ~11×/month)
   workflow_dispatch:
 
 concurrency:
@@ -15,11 +16,23 @@ permissions:
   contents: write
 
 jobs:
+  gate:   # a few seconds: decides whether today is the first Saturday of the month
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.day.outputs.run }}
+    steps:
+      - id: day
+        run: |
+          if [ "${{ github.event_name }}" != schedule ] || [ "$(date -u +%-d)" -le 7 ]; then echo run=true; else echo run=false; fi >> "$GITHUB_OUTPUT"
   validate:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}   # branch tip at run time, not the trigger commit: a queued run sees the previous run's state
       - uses: pnpm/action-setup@v4   # version comes from package.json packageManager
       - uses: actions/setup-node@v4
         with:
