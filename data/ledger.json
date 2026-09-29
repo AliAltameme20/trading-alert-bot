@@ -20,7 +20,15 @@
     "atr": 12.732225182405047
    },
    "sizing": null,
-   "status": "pending"
+   "status": "open",
+   "result": {
+    "status": "open",
+    "entryDate": "2026-09-28",
+    "entry": 368.06,
+    "mark": 357.45,
+    "markR": -0.893850042123,
+    "sessions": 1
+   }
   },
   {
    "id": "2026-09-25:JNJ:pullback",
@@ -41,7 +49,15 @@
     "atr": 5.160842666239793
    },
    "sizing": null,
-   "status": "pending"
+   "status": "open",
+   "result": {
+    "status": "open",
+    "entryDate": "2026-09-28",
+    "entry": 270.17,
+    "mark": 271.95,
+    "markR": 0.31504424778760387,
+    "sessions": 1
+   }
   },
   {
    "id": "2026-09-25:TXN:breakout",
@@ -60,6 +76,155 @@
     "riskPerShare": 16.66,
     "close": 278.07,
     "atr": 8.32758759271448
+   },
+   "sizing": null,
+   "status": "open",
+   "result": {
+    "status": "open",
+    "entryDate": "2026-09-28",
+    "entry": 277.595,
+    "mark": 278.31,
+    "markR": 0.0506912442396295,
+    "sessions": 1
+   }
+  },
+  {
+   "id": "2026-09-28:META:pullback",
+   "symbol": "META",
+   "setup": "pullback",
+   "label": "Trend pullback (1–5 sessions)",
+   "character": "random walk",
+   "asOf": "2026-09-28",
+   "createdAt": "2026-09-29T00:29:14.161Z",
+   "kind": "live",
+   "tier": "probation",
+   "plan": {
+    "limit": 722.62,
+    "stop": 680.6,
+    "target": 806.66,
+    "maxSessions": 5,
+    "riskPerShare": 42.02,
+    "close": 715.62,
+    "atr": 28.015979783186346
+   },
+   "sizing": {
+    "riskPct": 0.01,
+    "riskDollars": 100,
+    "shares": 2,
+    "notional": 1445.24
+   },
+   "status": "pending"
+  },
+  {
+   "id": "2026-09-28:QCOM:pullback",
+   "symbol": "QCOM",
+   "setup": "pullback",
+   "label": "Trend pullback (1–5 sessions)",
+   "character": "random walk",
+   "asOf": "2026-09-28",
+   "createdAt": "2026-09-29T00:29:14.162Z",
+   "kind": "live",
+   "tier": "probation",
+   "plan": {
+    "limit": 189.76,
+    "stop": 176.09,
+    "target": 217.1,
+    "maxSessions": 5,
+    "riskPerShare": 13.67,
+    "close": 187.48,
+    "atr": 9.113311961011217
+   },
+   "sizing": {
+    "riskPct": 0.01,
+    "riskDollars": 100,
+    "shares": 7,
+    "notional": 1328.32
+   },
+   "status": "pending"
+  },
+  {
+   "id": "2026-09-28:AMZN:dip",
+   "symbol": "AMZN",
+   "setup": "dip",
+   "label": "RSI(2) dip in uptrend (≤5 sessions)",
+   "character": "random walk",
+   "asOf": "2026-09-28",
+   "createdAt": "2026-09-29T00:29:14.162Z",
+   "kind": "shadow",
+   "tier": null,
+   "plan": {
+    "limit": 246.15,
+    "stop": 231.79,
+    "target": null,
+    "maxSessions": 5,
+    "exitAboveSma": 5,
+    "prevCloses": [
+     249.27,
+     249.38,
+     249.67,
+     246.15
+    ],
+    "riskPerShare": 14.36,
+    "close": 246.15,
+    "atr": 5.745994033163131
+   },
+   "sizing": null,
+   "status": "pending"
+  },
+  {
+   "id": "2026-09-28:MS:dip",
+   "symbol": "MS",
+   "setup": "dip",
+   "label": "RSI(2) dip in uptrend (≤5 sessions)",
+   "character": "random walk",
+   "asOf": "2026-09-28",
+   "createdAt": "2026-09-29T00:29:14.162Z",
+   "kind": "shadow",
+   "tier": null,
+   "plan": {
+    "limit": 193.64,
+    "stop": 181.36,
+    "target": null,
+    "maxSessions": 5,
+    "exitAboveSma": 5,
+    "prevCloses": [
+     198.39,
+     196.32,
+     196.31,
+     193.64
+    ],
+    "riskPerShare": 12.28,
+    "close": 193.64,
+    "atr": 4.913685442894797
+   },
+   "sizing": null,
+   "status": "pending"
+  },
+  {
+   "id": "2026-09-28:MCK:dip",
+   "symbol": "MCK",
+   "setup": "dip",
+   "label": "RSI(2) dip in uptrend (≤5 sessions)",
+   "character": "random walk",
+   "asOf": "2026-09-28",
+   "createdAt": "2026-09-29T00:29:14.162Z",
+   "kind": "shadow",
+   "tier": null,
+   "plan": {
+    "limit": 856.29,
+    "stop": 803.24,
+    "target": null,
+    "maxSessions": 5,
+    "exitAboveSma": 5,
+    "prevCloses": [
+     880.5,
+     869.36,
+     866.64,
+     856.29
+    ],
+    "riskPerShare": 53.05,
+    "close": 856.29,
+    "atr": 21.2209265712687
    },
    "sizing": null,
    "status": "pending"
