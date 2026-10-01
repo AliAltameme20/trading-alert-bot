@@ -37,9 +37,13 @@
   ]
  },
  "2026-09-30": {
-  "status": "pending",
+  "status": "sent",
   "at": "2026-10-01T00:00:12.300Z",
   "signals": [],
-  "message": "📈 SIGNALS for Thu, Oct 1 open · from Wed, Sep 30 close\n\nMarket: risk-on — SPY above 200-day (slope 1.4%/mo), volatility percentile 32\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• MRVL: already 4 open signals (max 4)\n• STX: already 4 open signals (max 4)\n\nYour signals:\n• HOOD: bought $117.70, now $112.50 (-0.58R) · stop $108.79 · target $135.52 stay in place\n• MRK: bought $148.95, now $145.31 (-0.88R) · stop $144.82 · target $160.87 stay in place\n\nLive record: no closed signals yet.\n\nFunnel: 5912 stocks → 1946 liquid → 171 with a setup → 165 series fit → 40 validated edge → 8 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders."
+  "message": "📈 SIGNALS for Thu, Oct 1 open · from Wed, Sep 30 close\n\nMarket: risk-on — SPY above 200-day (slope 1.4%/mo), volatility percentile 32\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• MRVL: already 4 open signals (max 4)\n• STX: already 4 open signals (max 4)\n\nYour signals:\n• HOOD: bought $117.70, now $112.50 (-0.58R) · stop $108.79 · target $135.52 stay in place\n• MRK: bought $148.95, now $145.31 (-0.88R) · stop $144.82 · target $160.87 stay in place\n\nLive record: no closed signals yet.\n\nFunnel: 5912 stocks → 1946 liquid → 171 with a setup → 165 series fit → 40 validated edge → 8 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders.",
+  "sentAt": "2026-10-01T00:02:03.184Z",
+  "messageIds": [
+   26
+  ]
  }
 }
