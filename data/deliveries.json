@@ -59,9 +59,13 @@
   ]
  },
  "2026-10-02": {
-  "status": "pending",
+  "status": "sent",
   "at": "2026-10-02T23:53:17.385Z",
   "signals": [],
-  "message": "📈 SIGNALS for Mon, Oct 5 open · from Fri, Oct 2 close\n\nMarket: risk-on — SPY above 200-day (slope 1.4%/mo), volatility percentile 40\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• TSLA: already 4 open signals (max 4)\n• NOK: already 4 open signals (max 4)\n\nYour signals:\n• TMO: bought $654.15, now $654.80 (+0.03R) · stop $632.63 · target $704.21 stay in place\n\nLive record: 1 closed · avg -1.06R · win 0% · PF 0.00\n\nFunnel: 5912 stocks → 1959 liquid → 139 with a setup → 134 series fit → 47 validated edge → 8 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders."
+  "message": "📈 SIGNALS for Mon, Oct 5 open · from Fri, Oct 2 close\n\nMarket: risk-on — SPY above 200-day (slope 1.4%/mo), volatility percentile 40\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• TSLA: already 4 open signals (max 4)\n• NOK: already 4 open signals (max 4)\n\nYour signals:\n• TMO: bought $654.15, now $654.80 (+0.03R) · stop $632.63 · target $704.21 stay in place\n\nLive record: 1 closed · avg -1.06R · win 0% · PF 0.00\n\nFunnel: 5912 stocks → 1959 liquid → 139 with a setup → 134 series fit → 47 validated edge → 8 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders.",
+  "sentAt": "2026-10-02T23:54:51.489Z",
+  "messageIds": [
+   28
+  ]
  }
 }
