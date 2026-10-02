@@ -45,5 +45,13 @@
   "messageIds": [
    26
   ]
+ },
+ "2026-10-01": {
+  "status": "pending",
+  "at": "2026-10-01T23:59:21.180Z",
+  "signals": [
+   "2026-10-01:TMO:pullback"
+  ],
+  "message": "📈 SIGNALS for Fri, Oct 2 open · from Thu, Oct 1 close\n\nMarket: risk-on — SPY above 200-day (slope 1.4%/mo), volatility percentile 35\n\n🟢 BUY TMO · Thermo Fisher Scientific, Inc.\n🟡 Probation: half size (edge is positive but below the full bar)\nTrend pullback (1–5 sessions) · for the Fri, Oct 2 open\n\n📋 THE TRADE\nBuy limit: $656.49. Day order; if it doesn't fill on Fri, Oct 2, skip it.\nStop loss: $632.63 (−3.6%). Enter it as a GTC sell-stop right after the buy fills.\nTarget: $704.21 (+7.3%). Enter it as a GTC sell-limit. Pair it with the stop as one OCO/bracket order if your broker allows; otherwise cancel the other order as soon as one fills.\nTime limit: if neither the stop nor the target is hit, sell at the close on Thu, Oct 8 (day 5).\nReward : risk = 2.0 : 1\n\n💵 POSITION ($10,000.00 account)\nBuy 3 shares ≈ $1,969.47\nIf stopped: −$71.58 (0.7% of account)\nIf target hits: +$143.16 (1.4% of account)\nFees not included. A gap at the open can fill past the stop.\n\n📊 THE STOCK\nLast close: $652.51 (−3.3% on the day)\nTrend: above its 50-day avg ($615.46) and above its 200-day avg ($541.34)\n52-week range: $434.50 to $683.63; 4.6% below the high\nLast 6 months: +32.2% vs S&P 500 +17.2%\nTypical daily move: 2.4% · RSI 56\nTraded per day: $1.4B\n\n🔎 WHY THIS ONE\nIt's in an uptrend (price above its 20-day average, which is above the 50-day) and has pulled back toward the 20-day average without breaking down. RSI 56, so not overbought.\nTested on 14,669 past trades like this over 2 years it was never tuned on: won 47% of the time, averaging +0.04R after costs (R = the amount risked).\nThis stock alone: 15 past trades, +0.75R average (too few to judge).\n\n✅ CHECKS\nEarnings: none in next 5 sessions\nAI news check: no disqualifier found (p=0.07)\nLatest news: none in 72h\n⚠️ size capped at 25% of the account (tight stop)\n\nYour signals:\n• MRK: sold $144.71 (stop (gap)) → -1.06R · bought $148.95 Wed, Sep 30, sold Thu, Oct 1\n\nLive record: 1 closed · avg -1.06R · win 0% · PF 0.00\n\nFunnel: 5912 stocks → 1950 liquid → 147 with a setup → 139 series fit → 39 validated edge → 8 of the top 8 clear of earnings → 1 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders."
  }
 }
