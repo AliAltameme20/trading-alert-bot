@@ -95,9 +95,13 @@
   ]
  },
  "2026-10-07": {
-  "status": "pending",
+  "status": "sent",
   "at": "2026-10-08T00:17:28.805Z",
   "signals": [],
-  "message": "📈 SIGNALS for Thu, Oct 8 open · from Wed, Oct 7 close\n\nMarket: risk-on — SPY above 200-day (slope 1.4%/mo), volatility percentile 42\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• META: already 4 open signals (max 4)\n• PLTR: already 4 open signals (max 4)\n\nYour signals:\n• SNOW: bought $333.42, now $332.85 (-0.04R) · stop $318.64 · target $380.95 stay in place\n\nLive record: 4 closed · avg -0.48R · win 25% · PF 0.19\n\nFunnel: 5906 stocks → 1956 liquid → 122 with a setup → 117 series fit → 73 validated edge → 8 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders."
+  "message": "📈 SIGNALS for Thu, Oct 8 open · from Wed, Oct 7 close\n\nMarket: risk-on — SPY above 200-day (slope 1.4%/mo), volatility percentile 42\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• META: already 4 open signals (max 4)\n• PLTR: already 4 open signals (max 4)\n\nYour signals:\n• SNOW: bought $333.42, now $332.85 (-0.04R) · stop $318.64 · target $380.95 stay in place\n\nLive record: 4 closed · avg -0.48R · win 25% · PF 0.19\n\nFunnel: 5906 stocks → 1956 liquid → 122 with a setup → 117 series fit → 73 validated edge → 8 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders.",
+  "sentAt": "2026-10-08T00:19:08.976Z",
+  "messageIds": [
+   33
+  ]
  }
 }
