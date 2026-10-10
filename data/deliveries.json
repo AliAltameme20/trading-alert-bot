@@ -117,5 +117,11 @@
    34,
    35
   ]
+ },
+ "2026-10-09": {
+  "status": "pending",
+  "at": "2026-10-10T00:07:23.354Z",
+  "signals": [],
+  "message": "📈 SIGNALS for Mon, Oct 12 open · from Fri, Oct 9 close\n\nMarket: risk-on — SPY above 200-day (slope 1.4%/mo), volatility percentile 38\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• AMD: already 4 open signals (max 4)\n• MRVL: already 4 open signals (max 4)\n\nYour signals:\n• NVDA: bought $231.92, now $229.28 (-0.31R) · stop $223.30 · target $249.16 stay in place\n• META: bought $726.51, now $718.67 (-0.23R) · stop $692.28 · target $795.27 stay in place\n\nLive record: 6 closed · avg -0.51R · win 17% · PF 0.13\n\nFunnel: 5909 stocks → 1962 liquid → 129 with a setup → 128 series fit → 77 validated edge → 8 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders."
  }
 }
