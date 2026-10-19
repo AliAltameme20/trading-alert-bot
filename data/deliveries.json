@@ -193,5 +193,11 @@
    43,
    44
   ]
+ },
+ "2026-10-19": {
+  "status": "pending",
+  "at": "2026-10-19T23:49:55.940Z",
+  "signals": [],
+  "message": "📈 SIGNALS for Tue, Oct 20 open · from Mon, Oct 19 close\n\nMarket: risk-on — SPY above 200-day (slope 1.4%/mo), volatility percentile 22\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• PM: earnings 2026-10-20 (1 sessions) — event risk, not this trade\n• ISRG: earnings 2026-10-20 (1 sessions) — event risk, not this trade\n• PLTR: already 4 open signals (max 4)\n• AMGN: already 4 open signals (max 4)\n\nYour signals:\n• MSFT: bought $528.70, now $533.52 (+0.33R) · stop $514.04 · target $568.07 stay in place\n• CRM: bought $238.48, now $242.45 (+0.44R) · stop $229.37 · target $270.17 stay in place\n\nLive record: 14 closed · avg -0.38R · win 29% · PF 0.39\n\nFunnel: 5904 stocks → 1921 liquid → 106 with a setup → 103 series fit → 55 validated edge → 6 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders."
  }
 }
