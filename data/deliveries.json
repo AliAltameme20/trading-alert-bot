@@ -205,9 +205,13 @@
   ]
  },
  "2026-10-20": {
-  "status": "pending",
+  "status": "sent",
   "at": "2026-10-20T23:15:38.418Z",
   "signals": [],
-  "message": "📈 SIGNALS for Wed, Oct 21 open · from Tue, Oct 20 close\n\nMarket: risk-on — SPY above 200-day (slope 1.4%/mo), volatility percentile 26\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• VST: already 4 open signals (max 4)\n• PM: already 4 open signals (max 4)\n\nLive record: 14 closed · avg -0.38R · win 29% · PF 0.39\n\nFunnel: 5904 stocks → 1914 liquid → 165 with a setup → 157 series fit → 39 validated edge → 8 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders."
+  "message": "📈 SIGNALS for Wed, Oct 21 open · from Tue, Oct 20 close\n\nMarket: risk-on — SPY above 200-day (slope 1.4%/mo), volatility percentile 26\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• VST: already 4 open signals (max 4)\n• PM: already 4 open signals (max 4)\n\nLive record: 14 closed · avg -0.38R · win 29% · PF 0.39\n\nFunnel: 5904 stocks → 1914 liquid → 165 with a setup → 157 series fit → 39 validated edge → 8 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders.",
+  "sentAt": "2026-10-20T23:17:42.031Z",
+  "messageIds": [
+   46
+  ]
  }
 }
