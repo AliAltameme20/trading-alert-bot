@@ -2472,9 +2472,9 @@
     "status": "open",
     "entryDate": "2026-10-21",
     "entry": 539.5,
-    "mark": 570.89,
-    "markR": 1.8978234582829538,
-    "sessions": 13
+    "mark": 575.25,
+    "markR": 2.1614268440145152,
+    "sessions": 14
    }
   },
   {
@@ -3665,9 +3665,9 @@
     "status": "open",
     "entryDate": "2026-10-30",
     "entry": 97.68,
-    "mark": 101.8,
-    "markR": 0.9015317286652043,
-    "sessions": 6
+    "mark": 102.79,
+    "markR": 1.1181619256017485,
+    "sessions": 7
    }
   },
   {
@@ -3911,14 +3911,16 @@
     "shares": 5,
     "notional": 2016.25
    },
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-03",
     "entry": 399.17,
-    "mark": 394.15,
-    "markR": -0.39310884886452807,
-    "sessions": 4
+    "exitDate": "2026-11-09",
+    "exit": 397.62,
+    "reason": "time",
+    "sessions": 5,
+    "r": -0.1525759592795619
    }
   },
   {
@@ -4016,9 +4018,9 @@
     "status": "open",
     "entryDate": "2026-11-03",
     "entry": 422.4,
-    "mark": 422.65,
-    "markR": 0.02431906614785999,
-    "sessions": 4
+    "mark": 422.16,
+    "markR": -0.023346303501940942,
+    "sessions": 5
    }
   },
   {
@@ -4046,9 +4048,9 @@
     "status": "open",
     "entryDate": "2026-11-03",
     "entry": 554.22,
-    "mark": 570.89,
-    "markR": 1.5420906567992476,
-    "sessions": 4
+    "mark": 575.25,
+    "markR": 1.9454209065679795,
+    "sessions": 5
    }
   },
   {
@@ -4118,9 +4120,9 @@
     "status": "open",
     "entryDate": "2026-11-04",
     "entry": 287.65,
-    "mark": 291.31,
-    "markR": 0.3704453441295574,
-    "sessions": 3
+    "mark": 293.3,
+    "markR": 0.5718623481781414,
+    "sessions": 4
    }
   },
   {
@@ -4345,9 +4347,9 @@
     "status": "open",
     "entryDate": "2026-11-05",
     "entry": 268.17,
-    "mark": 259.3,
-    "markR": -0.5172011661807581,
-    "sessions": 2
+    "mark": 266.93,
+    "markR": -0.07230320699708505,
+    "sessions": 3
    }
   },
   {
@@ -4412,9 +4414,9 @@
     "status": "open",
     "entryDate": "2026-11-06",
     "entry": 1350.45,
-    "mark": 1354,
-    "markR": 0.07848772938315174,
-    "sessions": 1
+    "mark": 1411.95,
+    "markR": 1.3597170019898293,
+    "sessions": 2
    }
   },
   {
@@ -4449,9 +4451,9 @@
     "status": "open",
     "entryDate": "2026-11-06",
     "entry": 164.25,
-    "mark": 165.87,
-    "markR": 0.1462093862815887,
-    "sessions": 1
+    "mark": 164.73,
+    "markR": 0.043321299638988196,
+    "sessions": 2
    }
   },
   {
@@ -4486,9 +4488,9 @@
     "status": "open",
     "entryDate": "2026-11-06",
     "entry": 211.525,
-    "mark": 212.61,
-    "markR": 0.08824725498170041,
-    "sessions": 1
+    "mark": 210.78,
+    "markR": -0.06059373729158223,
+    "sessions": 2
    }
   },
   {
@@ -4523,9 +4525,9 @@
     "status": "open",
     "entryDate": "2026-11-06",
     "entry": 135.13,
-    "mark": 136.27,
-    "markR": 0.1106796116504869,
-    "sessions": 1
+    "mark": 134.47,
+    "markR": -0.0640776699029123,
+    "sessions": 2
    }
   },
   {
@@ -4553,7 +4555,15 @@
     "shares": 5,
     "notional": 2124.8500000000004
    },
-   "status": "pending"
+   "status": "open",
+   "result": {
+    "status": "open",
+    "entryDate": "2026-11-09",
+    "entry": 424.02,
+    "mark": 422.16,
+    "markR": -0.1436293436293404,
+    "sessions": 1
+   }
   },
   {
    "id": "2026-11-06:CVX:dip",
@@ -4582,7 +4592,15 @@
     "atr": 5.426451906084828
    },
    "sizing": null,
-   "status": "pending"
+   "status": "open",
+   "result": {
+    "status": "open",
+    "entryDate": "2026-11-09",
+    "entry": 210.85,
+    "mark": 210.78,
+    "markR": -0.005927180355630243,
+    "sessions": 1
+   }
   },
   {
    "id": "2026-11-06:PM:dip",
@@ -4611,7 +4629,15 @@
     "atr": 5.678050592478458
    },
    "sizing": null,
-   "status": "pending"
+   "status": "open",
+   "result": {
+    "status": "open",
+    "entryDate": "2026-11-09",
+    "entry": 197.88,
+    "mark": 193.12,
+    "markR": -0.3352112676056334,
+    "sessions": 1
+   }
   },
   {
    "id": "2026-11-06:COF:dip",
@@ -4638,6 +4664,121 @@
     "riskPerShare": 15.51,
     "close": 201.87,
     "atr": 6.204231331687426
+   },
+   "sizing": null,
+   "status": "open",
+   "result": {
+    "status": "open",
+    "entryDate": "2026-11-09",
+    "entry": 201.87,
+    "mark": 198.58,
+    "markR": -0.21212121212121174,
+    "sessions": 1
+   }
+  },
+  {
+   "id": "2026-11-09:WMT:pullback",
+   "symbol": "WMT",
+   "setup": "pullback",
+   "label": "Trend pullback (1–5 sessions)",
+   "character": "random walk",
+   "asOf": "2026-11-09",
+   "createdAt": "2026-11-10T02:50:49.820Z",
+   "kind": "live",
+   "tier": "probation",
+   "plan": {
+    "limit": 126.42,
+    "stop": 121.86,
+    "target": 135.54,
+    "maxSessions": 5,
+    "riskPerShare": 4.56,
+    "close": 125.66,
+    "atr": 3.0422257659028173
+   },
+   "sizing": {
+    "riskPct": 0.01,
+    "riskDollars": 100,
+    "shares": 19,
+    "notional": 2401.98
+   },
+   "status": "pending"
+  },
+  {
+   "id": "2026-11-09:XOM:dip",
+   "symbol": "XOM",
+   "setup": "dip",
+   "label": "RSI(2) dip in uptrend (≤5 sessions)",
+   "character": "random walk",
+   "asOf": "2026-11-09",
+   "createdAt": "2026-11-10T02:50:49.820Z",
+   "kind": "shadow",
+   "tier": null,
+   "plan": {
+    "limit": 164.73,
+    "stop": 153.19,
+    "target": null,
+    "maxSessions": 5,
+    "exitAboveSma": 5,
+    "prevCloses": [
+     169.27,
+     165.3,
+     165.87,
+     164.73
+    ],
+    "riskPerShare": 11.54,
+    "close": 164.73,
+    "atr": 4.61766604946295
+   },
+   "sizing": null,
+   "status": "pending"
+  },
+  {
+   "id": "2026-11-09:JNJ:breakout",
+   "symbol": "JNJ",
+   "setup": "breakout",
+   "label": "20-day breakout (≤10 sessions)",
+   "character": "random walk",
+   "asOf": "2026-11-09",
+   "createdAt": "2026-11-10T02:50:49.820Z",
+   "kind": "shadow",
+   "tier": null,
+   "plan": {
+    "limit": 283.95,
+    "stop": 269.25,
+    "target": 328.05,
+    "maxSessions": 10,
+    "riskPerShare": 14.7,
+    "close": 282.11,
+    "atr": 7.351233402708637
+   },
+   "sizing": null,
+   "status": "pending"
+  },
+  {
+   "id": "2026-11-09:CVX:dip",
+   "symbol": "CVX",
+   "setup": "dip",
+   "label": "RSI(2) dip in uptrend (≤5 sessions)",
+   "character": "random walk",
+   "asOf": "2026-11-09",
+   "createdAt": "2026-11-10T02:50:49.820Z",
+   "kind": "shadow",
+   "tier": null,
+   "plan": {
+    "limit": 210.78,
+    "stop": 197.49,
+    "target": null,
+    "maxSessions": 5,
+    "exitAboveSma": 5,
+    "prevCloses": [
+     216.96,
+     212.93,
+     212.61,
+     210.78
+    ],
+    "riskPerShare": 13.29,
+    "close": 210.78,
+    "atr": 5.315276769935912
    },
    "sizing": null,
    "status": "pending"
