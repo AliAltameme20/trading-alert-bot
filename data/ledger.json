@@ -2472,9 +2472,9 @@
     "status": "open",
     "entryDate": "2026-10-21",
     "entry": 539.5,
-    "mark": 583.34,
-    "markR": 2.65054413542927,
-    "sessions": 15
+    "mark": 588.24,
+    "markR": 2.946795646916573,
+    "sessions": 16
    }
   },
   {
@@ -3665,9 +3665,9 @@
     "status": "open",
     "entryDate": "2026-10-30",
     "entry": 97.68,
-    "mark": 101.59,
-    "markR": 0.8555798687089694,
-    "sessions": 8
+    "mark": 101.61,
+    "markR": 0.8599562363238482,
+    "sessions": 9
    }
   },
   {
@@ -4018,9 +4018,9 @@
     "status": "open",
     "entryDate": "2026-11-03",
     "entry": 422.4,
-    "mark": 423,
-    "markR": 0.05836575875486618,
-    "sessions": 6
+    "mark": 425.55,
+    "markR": 0.30642023346303915,
+    "sessions": 7
    }
   },
   {
@@ -4048,9 +4048,9 @@
     "status": "open",
     "entryDate": "2026-11-03",
     "entry": 554.22,
-    "mark": 583.34,
-    "markR": 2.693802035152622,
-    "sessions": 6
+    "mark": 588.24,
+    "markR": 3.14708603145234,
+    "sessions": 7
    }
   },
   {
@@ -4349,9 +4349,9 @@
     "status": "open",
     "entryDate": "2026-11-05",
     "entry": 268.17,
-    "mark": 270.87,
-    "markR": 0.1574344023323608,
-    "sessions": 4
+    "mark": 266.17,
+    "markR": -0.11661807580174924,
+    "sessions": 5
    }
   },
   {
@@ -4416,9 +4416,9 @@
     "status": "open",
     "entryDate": "2026-11-06",
     "entry": 1350.45,
-    "mark": 1432.29,
-    "markR": 1.8094185275259758,
-    "sessions": 3
+    "mark": 1437.29,
+    "markR": 1.9199646252487261,
+    "sessions": 4
    }
   },
   {
@@ -4448,14 +4448,16 @@
     "atr": 4.852086069199635
    },
    "sizing": null,
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-06",
     "entry": 164.25,
-    "mark": 164.47,
-    "markR": 0.019855595667869912,
-    "sessions": 3
+    "exitDate": "2026-11-11",
+    "exit": 166.71,
+    "reason": "close > SMA5",
+    "sessions": 4,
+    "r": 0.20708664259927845
    }
   },
   {
@@ -4485,14 +4487,16 @@
     "atr": 5.480025129629815
    },
    "sizing": null,
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-06",
     "entry": 211.525,
-    "mark": 211.22,
-    "markR": -0.024806832045547494,
-    "sessions": 3
+    "exitDate": "2026-11-11",
+    "exit": 213.28,
+    "reason": "close > SMA5",
+    "sessions": 4,
+    "r": 0.12546543310288683
    }
   },
   {
@@ -4522,14 +4526,16 @@
     "atr": 4.250529322337566
    },
    "sizing": null,
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-06",
     "entry": 135.13,
-    "mark": 135.59,
-    "markR": 0.04466019417475807,
-    "sessions": 3
+    "exitDate": "2026-11-11",
+    "exit": 137.86,
+    "reason": "close > SMA5",
+    "sessions": 4,
+    "r": 0.2517966019417494
    }
   },
   {
@@ -4562,9 +4568,9 @@
     "status": "open",
     "entryDate": "2026-11-09",
     "entry": 424.02,
-    "mark": 423,
-    "markR": -0.07876447876447742,
-    "sessions": 2
+    "mark": 425.55,
+    "markR": 0.11814671814672054,
+    "sessions": 3
    }
   },
   {
@@ -4594,14 +4600,16 @@
     "atr": 5.426451906084828
    },
    "sizing": null,
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-09",
     "entry": 210.85,
-    "mark": 211.22,
-    "markR": 0.03132938187976329,
-    "sessions": 2
+    "exitDate": "2026-11-11",
+    "exit": 213.28,
+    "reason": "close > SMA5",
+    "sessions": 3,
+    "r": 0.18780143945808692
    }
   },
   {
@@ -4636,9 +4644,9 @@
     "status": "open",
     "entryDate": "2026-11-09",
     "entry": 197.88,
-    "mark": 194.25,
-    "markR": -0.2556338028169013,
-    "sessions": 2
+    "mark": 196.35,
+    "markR": -0.1077464788732396,
+    "sessions": 3
    }
   },
   {
@@ -4673,9 +4681,9 @@
     "status": "open",
     "entryDate": "2026-11-09",
     "entry": 201.87,
-    "mark": 195.84,
-    "markR": -0.3887814313346231,
-    "sessions": 2
+    "mark": 197.11,
+    "markR": -0.30689877498388096,
+    "sessions": 3
    }
   },
   {
@@ -4708,9 +4716,9 @@
     "status": "open",
     "entryDate": "2026-11-10",
     "entry": 125.66,
-    "mark": 125.55,
-    "markR": -0.028947368421052503,
-    "sessions": 1
+    "mark": 125.67,
+    "markR": 0.0026315789473697693,
+    "sessions": 2
    }
   },
   {
@@ -4740,14 +4748,16 @@
     "atr": 4.61766604946295
    },
    "sizing": null,
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-10",
     "entry": 161.86,
-    "mark": 164.47,
-    "markR": 0.30103806228373475,
-    "sessions": 1
+    "exitDate": "2026-11-11",
+    "exit": 166.71,
+    "reason": "close > SMA5",
+    "sessions": 2,
+    "r": 0.5404515570934239
    }
   },
   {
@@ -4775,9 +4785,9 @@
     "status": "open",
     "entryDate": "2026-11-10",
     "entry": 282,
-    "mark": 280.78,
-    "markR": -0.09568627450980606,
-    "sessions": 1
+    "mark": 280.41,
+    "markR": -0.12470588235293921,
+    "sessions": 2
    }
   },
   {
@@ -4807,14 +4817,16 @@
     "atr": 5.315276769935912
    },
    "sizing": null,
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-10",
     "entry": 208.07,
-    "mark": 211.22,
-    "markR": 0.29773156899811065,
-    "sessions": 1
+    "exitDate": "2026-11-11",
+    "exit": 213.28,
+    "reason": "close > SMA5",
+    "sessions": 2,
+    "r": 0.4725259924385648
    }
   },
   {
@@ -4842,7 +4854,15 @@
     "shares": 4,
     "notional": 1815.76
    },
-   "status": "pending"
+   "status": "open",
+   "result": {
+    "status": "open",
+    "entryDate": "2026-11-11",
+    "entry": 446,
+    "mark": 449.53,
+    "markR": 0.2284789644012929,
+    "sessions": 1
+   }
   },
   {
    "id": "2026-11-10:XOM:dip",
@@ -4871,7 +4891,17 @@
     "atr": 4.634254188787026
    },
    "sizing": null,
-   "status": "pending"
+   "status": "closed",
+   "result": {
+    "status": "closed",
+    "entryDate": "2026-11-11",
+    "entry": 164.47,
+    "exitDate": "2026-11-11",
+    "exit": 166.71,
+    "reason": "close > SMA5",
+    "sessions": 1,
+    "r": 0.17898274374460815
+   }
   },
   {
    "id": "2026-11-10:TTWO:gapdrift",
@@ -4893,7 +4923,15 @@
     "atr": 8.626745729187665
    },
    "sizing": null,
-   "status": "pending"
+   "status": "open",
+   "result": {
+    "status": "open",
+    "entryDate": "2026-11-11",
+    "entry": 226.8,
+    "mark": 231.31,
+    "markR": 0.3373223635003732,
+    "sessions": 1
+   }
   },
   {
    "id": "2026-11-10:BP:dip",
@@ -4920,6 +4958,76 @@
     "riskPerShare": 3.19,
     "close": 44.58,
     "atr": 1.27694344223294
+   },
+   "sizing": null,
+   "status": "nofill",
+   "result": {
+    "status": "nofill",
+    "date": "2026-11-11"
+   }
+  },
+  {
+   "id": "2026-11-11:AAPL:breakout",
+   "symbol": "AAPL",
+   "setup": "breakout",
+   "label": "20-day breakout (≤10 sessions)",
+   "character": "random walk",
+   "asOf": "2026-11-11",
+   "createdAt": "2026-11-12T01:59:14.018Z",
+   "kind": "shadow",
+   "tier": null,
+   "plan": {
+    "limit": 357.79,
+    "stop": 340.48,
+    "target": 409.72,
+    "maxSessions": 10,
+    "riskPerShare": 17.31,
+    "close": 355.63,
+    "atr": 8.655557849710872
+   },
+   "sizing": null,
+   "status": "pending"
+  },
+  {
+   "id": "2026-11-11:BRK.B:breakout",
+   "symbol": "BRK.B",
+   "setup": "breakout",
+   "label": "20-day breakout (≤10 sessions)",
+   "character": "random walk",
+   "asOf": "2026-11-11",
+   "createdAt": "2026-11-12T01:59:14.018Z",
+   "kind": "shadow",
+   "tier": null,
+   "plan": {
+    "limit": 590.77,
+    "stop": 570.5,
+    "target": 651.58,
+    "maxSessions": 10,
+    "riskPerShare": 20.27,
+    "close": 588.24,
+    "atr": 10.135080288991505
+   },
+   "sizing": null,
+   "status": "pending"
+  },
+  {
+   "id": "2026-11-11:KO:breakout",
+   "symbol": "KO",
+   "setup": "breakout",
+   "label": "20-day breakout (≤10 sessions)",
+   "character": "random walk",
+   "asOf": "2026-11-11",
+   "createdAt": "2026-11-12T01:59:14.018Z",
+   "kind": "shadow",
+   "tier": null,
+   "plan": {
+    "limit": 98.01,
+    "stop": 94.45,
+    "target": 108.69,
+    "maxSessions": 10,
+    "riskPerShare": 3.56,
+    "close": 97.57,
+    "atr": 1.7781346570929741
    },
    "sizing": null,
    "status": "pending"
