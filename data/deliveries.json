@@ -417,9 +417,13 @@
   ]
  },
  "2026-11-11": {
-  "status": "pending",
+  "status": "sent",
   "at": "2026-11-12T01:57:04.897Z",
   "signals": [],
-  "message": "📈 SIGNALS for Thu, Nov 12 open · from Wed, Nov 11 close\n\nMarket: risk-on but unstable — SPY above 200-day (slope 1.1%/mo), volatility percentile 80\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• AAPL: already 4 open signals (max 4)\n• KO: already 4 open signals (max 4)\n\nYour signals:\n• ISRG: bought $446.00, now $449.53 (+0.23R) · stop $430.55 · target $500.72 stay in place\n\nLive record: 24 closed · avg -0.45R · win 25% · PF 0.32\n\nFunnel: 5886 stocks → 1923 liquid → 218 with a setup → 208 series fit → 178 validated edge → 8 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders."
+  "message": "📈 SIGNALS for Thu, Nov 12 open · from Wed, Nov 11 close\n\nMarket: risk-on but unstable — SPY above 200-day (slope 1.1%/mo), volatility percentile 80\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• AAPL: already 4 open signals (max 4)\n• KO: already 4 open signals (max 4)\n\nYour signals:\n• ISRG: bought $446.00, now $449.53 (+0.23R) · stop $430.55 · target $500.72 stay in place\n\nLive record: 24 closed · avg -0.45R · win 25% · PF 0.32\n\nFunnel: 5886 stocks → 1923 liquid → 218 with a setup → 208 series fit → 178 validated edge → 8 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders.",
+  "sentAt": "2026-11-12T01:59:16.133Z",
+  "messageIds": [
+   74
+  ]
  }
 }
