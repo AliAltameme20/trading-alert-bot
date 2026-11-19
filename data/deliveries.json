@@ -477,9 +477,13 @@
   ]
  },
  "2026-11-18": {
-  "status": "pending",
+  "status": "sent",
   "at": "2026-11-19T01:56:07.885Z",
   "signals": [],
-  "message": "📈 SIGNALS for Thu, Nov 19 open · from Wed, Nov 18 close\n\nMarket: risk-on but unstable — SPY above 200-day (slope 1.0%/mo), volatility percentile 85\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• LLY: 1 share risks $65.22 — above your risk budget\n• BRK.B: already 4 open signals (max 4)\n• NEE: already 4 open signals (max 4)\n\nYour signals:\n• GE: bought $327.47, now $328.10 (+0.05R) · stop $313.61 · target $359.66 stay in place\n• PEP: bought $140.39, now $141.87 (+0.58R) · stop $137.85 · target $152.88 stay in place\n\nLive record: 29 closed · avg -0.36R · win 31% · PF 0.42\n\nFunnel: 5873 stocks → 1911 liquid → 330 with a setup → 323 series fit → 203 validated edge → 8 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders."
+  "message": "📈 SIGNALS for Thu, Nov 19 open · from Wed, Nov 18 close\n\nMarket: risk-on but unstable — SPY above 200-day (slope 1.0%/mo), volatility percentile 85\n\nNO TRADE — Candidates existed but were withheld (below).\n\nWithheld:\n• LLY: 1 share risks $65.22 — above your risk budget\n• BRK.B: already 4 open signals (max 4)\n• NEE: already 4 open signals (max 4)\n\nYour signals:\n• GE: bought $327.47, now $328.10 (+0.05R) · stop $313.61 · target $359.66 stay in place\n• PEP: bought $140.39, now $141.87 (+0.58R) · stop $137.85 · target $152.88 stay in place\n\nLive record: 29 closed · avg -0.36R · win 31% · PF 0.42\n\nFunnel: 5873 stocks → 1911 liquid → 330 with a setup → 323 series fit → 203 validated edge → 8 of the top 8 clear of earnings → 2 after AI check · 3 shadow logged\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders.",
+  "sentAt": "2026-11-19T01:57:40.521Z",
+  "messageIds": [
+   80
+  ]
  }
 }
