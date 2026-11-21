@@ -5017,9 +5017,9 @@
     "status": "open",
     "entryDate": "2026-11-12",
     "entry": 357.79,
-    "mark": 349.21,
-    "markR": -0.49566724436742,
-    "sessions": 6
+    "mark": 342.56,
+    "markR": -0.8798382437897179,
+    "sessions": 7
    }
   },
   {
@@ -5079,9 +5079,9 @@
     "status": "open",
     "entryDate": "2026-11-12",
     "entry": 98.01,
-    "mark": 96.09,
-    "markR": -0.5393258426966293,
-    "sessions": 6
+    "mark": 96.99,
+    "markR": -0.28651685393258697,
+    "sessions": 7
    }
   },
   {
@@ -5320,14 +5320,16 @@
     "atr": 15.490598496541248
    },
    "sizing": null,
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-16",
     "entry": 538.6,
-    "mark": 520.66,
-    "markR": -0.46320681642137995,
-    "sessions": 4
+    "exitDate": "2026-11-20",
+    "exit": 515.02,
+    "reason": "time",
+    "sessions": 5,
+    "r": -0.6224324812806618
    }
   },
   {
@@ -5387,14 +5389,16 @@
     "shares": 3,
     "notional": 780.1200000000001
    },
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-17",
     "entry": 257.55,
-    "mark": 257.37,
-    "markR": -0.016028495102404856,
-    "sessions": 3
+    "exitDate": "2026-11-20",
+    "exit": 246.32,
+    "reason": "stop",
+    "sessions": 4,
+    "r": -1.02243410507569
    }
   },
   {
@@ -5518,14 +5522,16 @@
     "shares": 3,
     "notional": 986.8799999999999
    },
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-18",
     "entry": 327.47,
-    "mark": 318.88,
-    "markR": -0.6197691197691214,
-    "sessions": 2
+    "exitDate": "2026-11-20",
+    "exit": 313.61,
+    "reason": "stop",
+    "sessions": 3,
+    "r": -1.023126984126984
    }
   },
   {
@@ -5597,9 +5603,9 @@
     "status": "open",
     "entryDate": "2026-11-18",
     "entry": 505.5,
-    "mark": 498.3,
-    "markR": -0.19077901430842573,
-    "sessions": 2
+    "mark": 484.52,
+    "markR": -0.5559088500264975,
+    "sessions": 3
    }
   },
   {
@@ -5629,14 +5635,16 @@
     "atr": 7.457638720407339
    },
    "sizing": null,
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-18",
     "entry": 327.52,
-    "mark": 320.22,
-    "markR": -0.4506172839506148,
-    "sessions": 2
+    "exitDate": "2026-11-20",
+    "exit": 311.32,
+    "reason": "stop",
+    "sessions": 3,
+    "r": -1.0197172839506174
    }
   },
   {
@@ -5671,9 +5679,9 @@
     "status": "open",
     "entryDate": "2026-11-18",
     "entry": 331.245,
-    "mark": 336.68,
-    "markR": 0.3739250085999307,
-    "sessions": 2
+    "mark": 339.04,
+    "markR": 0.5362917096663229,
+    "sessions": 3
    }
   },
   {
@@ -5708,9 +5716,9 @@
     "status": "open",
     "entryDate": "2026-11-19",
     "entry": 1369.38,
-    "mark": 1351.12,
-    "markR": -0.1915451589216426,
-    "sessions": 1
+    "mark": 1347.11,
+    "markR": -0.23360956676807063,
+    "sessions": 2
    }
   },
   {
@@ -5745,9 +5753,9 @@
     "status": "open",
     "entryDate": "2026-11-19",
     "entry": 572.25,
-    "mark": 572.04,
-    "markR": -0.009664058904741656,
-    "sessions": 1
+    "mark": 570,
+    "markR": -0.10354348826507125,
+    "sessions": 2
    }
   },
   {
@@ -5782,15 +5790,15 @@
     "status": "open",
     "entryDate": "2026-11-19",
     "entry": 160.58,
-    "mark": 158.93,
-    "markR": -0.15165441176470607,
-    "sessions": 1
+    "mark": 159.99,
+    "markR": -0.054227941176470784,
+    "sessions": 2
    }
   }
  ],
  "pause": {
-  "paused": false,
-  "resumedAt": "2026-11-03T02:29:20.507Z",
-  "reason": "last 20 signals recovered to 0.32R"
+  "paused": true,
+  "since": "2026-11-21T01:37:41.620Z",
+  "reason": "last 20 signals averaged -0.37R"
  }
 }
