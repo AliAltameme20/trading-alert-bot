@@ -507,9 +507,13 @@
   ]
  },
  "2026-11-23": {
-  "status": "pending",
+  "status": "sent",
   "at": "2026-11-23T21:59:28.253Z",
   "signals": [],
-  "message": "📈 SIGNALS for Tue, Nov 24 open · from Mon, Nov 23 close\n\nMarket: transitional — SPY below 200-day (slope 0.9%/mo), volatility percentile 97\n\nNO TRADE — the market regime does not support new longs. Every long setup degrades together in this tape.\n\nLive record: 33 closed · avg -0.44R · win 27% · PF 0.34\n\nFunnel: 5882 stocks → 1916 liquid → 0 with a setup → 0 series fit → 0 validated edge → 0 of the top 8 clear of earnings → 0 after AI check\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders."
+  "message": "📈 SIGNALS for Tue, Nov 24 open · from Mon, Nov 23 close\n\nMarket: transitional — SPY below 200-day (slope 0.9%/mo), volatility percentile 97\n\nNO TRADE — the market regime does not support new longs. Every long setup degrades together in this tape.\n\nLive record: 33 closed · avg -0.44R · win 27% · PF 0.34\n\nFunnel: 5882 stocks → 1916 liquid → 0 with a setup → 0 series fit → 0 validated edge → 0 of the top 8 clear of earnings → 0 after AI check\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders.",
+  "sentAt": "2026-11-23T21:59:42.881Z",
+  "messageIds": [
+   83
+  ]
  }
 }
