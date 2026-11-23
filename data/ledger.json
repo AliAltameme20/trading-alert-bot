@@ -5017,9 +5017,9 @@
     "status": "open",
     "entryDate": "2026-11-12",
     "entry": 357.79,
-    "mark": 342.56,
-    "markR": -0.8798382437897179,
-    "sessions": 7
+    "mark": 349.08,
+    "markR": -0.5031773541305624,
+    "sessions": 8
    }
   },
   {
@@ -5079,9 +5079,9 @@
     "status": "open",
     "entryDate": "2026-11-12",
     "entry": 98.01,
-    "mark": 96.99,
-    "markR": -0.28651685393258697,
-    "sessions": 7
+    "mark": 95.88,
+    "markR": -0.5983146067415753,
+    "sessions": 8
    }
   },
   {
@@ -5603,9 +5603,9 @@
     "status": "open",
     "entryDate": "2026-11-18",
     "entry": 505.5,
-    "mark": 484.52,
-    "markR": -0.5559088500264975,
-    "sessions": 3
+    "mark": 492.5,
+    "markR": -0.3444621091679914,
+    "sessions": 4
    }
   },
   {
@@ -5674,14 +5674,16 @@
     "atr": 8.918917888053011
    },
    "sizing": null,
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-18",
     "entry": 331.245,
-    "mark": 339.04,
-    "markR": 0.5362917096663229,
-    "sessions": 3
+    "exitDate": "2026-11-23",
+    "exit": 346.06,
+    "reason": "close > SMA5",
+    "sessions": 4,
+    "r": 0.9959647402820758
    }
   },
   {
@@ -5716,9 +5718,9 @@
     "status": "open",
     "entryDate": "2026-11-19",
     "entry": 1369.38,
-    "mark": 1347.11,
-    "markR": -0.23360956676807063,
-    "sessions": 2
+    "mark": 1364.6,
+    "markR": -0.050141613343125904,
+    "sessions": 3
    }
   },
   {
@@ -5753,9 +5755,9 @@
     "status": "open",
     "entryDate": "2026-11-19",
     "entry": 572.25,
-    "mark": 570,
-    "markR": -0.10354348826507125,
-    "sessions": 2
+    "mark": 572.36,
+    "markR": 0.005062126092959666,
+    "sessions": 3
    }
   },
   {
@@ -5790,9 +5792,9 @@
     "status": "open",
     "entryDate": "2026-11-19",
     "entry": 160.58,
-    "mark": 159.99,
-    "markR": -0.054227941176470784,
-    "sessions": 2
+    "mark": 156.9,
+    "markR": -0.33823529411764697,
+    "sessions": 3
    }
   }
  ],
