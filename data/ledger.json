@@ -5017,9 +5017,9 @@
     "status": "open",
     "entryDate": "2026-11-12",
     "entry": 357.79,
-    "mark": 349.08,
-    "markR": -0.5031773541305624,
-    "sessions": 8
+    "mark": 354.07,
+    "markR": -0.21490467937608473,
+    "sessions": 9
    }
   },
   {
@@ -5079,9 +5079,9 @@
     "status": "open",
     "entryDate": "2026-11-12",
     "entry": 98.01,
-    "mark": 95.88,
-    "markR": -0.5983146067415753,
-    "sessions": 8
+    "mark": 97.62,
+    "markR": -0.1095505617977529,
+    "sessions": 9
    }
   },
   {
@@ -5598,14 +5598,16 @@
     "atr": 15.393933038326313
    },
    "sizing": null,
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-18",
     "entry": 505.5,
-    "mark": 492.5,
-    "markR": -0.3444621091679914,
-    "sessions": 4
+    "exitDate": "2026-11-24",
+    "exit": 496.13,
+    "reason": "close > SMA5",
+    "sessions": 5,
+    "r": -0.26154782723900377
    }
   },
   {
@@ -5713,14 +5715,16 @@
     "atr": 43.47853380496246
    },
    "sizing": null,
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-19",
     "entry": 1369.38,
-    "mark": 1364.6,
-    "markR": -0.050141613343125904,
-    "sessions": 3
+    "exitDate": "2026-11-24",
+    "exit": 1407.59,
+    "reason": "close > SMA5",
+    "sessions": 4,
+    "r": 0.38625317318787106
    }
   },
   {
@@ -5750,14 +5754,16 @@
     "atr": 9.638547490890188
    },
    "sizing": null,
-   "status": "open",
+   "status": "closed",
    "result": {
-    "status": "open",
+    "status": "closed",
     "entryDate": "2026-11-19",
     "entry": 572.25,
-    "mark": 572.36,
-    "markR": 0.005062126092959666,
-    "sessions": 3
+    "exitDate": "2026-11-24",
+    "exit": 577.21,
+    "reason": "close > SMA5",
+    "sessions": 4,
+    "r": 0.20180717901518788
    }
   },
   {
@@ -5792,9 +5798,9 @@
     "status": "open",
     "entryDate": "2026-11-19",
     "entry": 160.58,
-    "mark": 156.9,
-    "markR": -0.33823529411764697,
-    "sessions": 3
+    "mark": 158.23,
+    "markR": -0.21599264705882515,
+    "sessions": 4
    }
   }
  ],
