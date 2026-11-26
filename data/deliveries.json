@@ -525,5 +525,11 @@
   "messageIds": [
    84
   ]
+ },
+ "2026-11-25": {
+  "status": "pending",
+  "at": "2026-11-26T02:57:14.436Z",
+  "signals": [],
+  "message": "📈 SIGNALS for Fri, Nov 27 open · from Wed, Nov 25 close\n\nMarket: transitional — SPY below 200-day (slope 0.8%/mo), volatility percentile 97\n\nNO TRADE — the market regime does not support new longs. Every long setup degrades together in this tape.\n\nLive record: 33 closed · avg -0.44R · win 27% · PF 0.34\n\nFunnel: 5873 stocks → 1911 liquid → 0 with a setup → 0 series fit → 0 validated edge → 0 of the top 8 clear of earnings → 0 after AI check\n\nData: consolidated (SIP) daily bars. Research signals only; the bot never places orders."
  }
 }
